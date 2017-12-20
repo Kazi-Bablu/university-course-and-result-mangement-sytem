@@ -59,7 +59,6 @@
                         {{Form::select('teacher', ['s'=>'S'], ' ', array('placeholder' => 'Select Teacher','class'=>'form-control'))}}--}}
 
                         <select name="teacher" id="teacher"  class="form-control">
-
                             <option value=" "> -- Select Teacher---</option>
 
                         </select>

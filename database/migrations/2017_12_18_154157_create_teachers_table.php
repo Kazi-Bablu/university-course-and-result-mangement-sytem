@@ -20,7 +20,7 @@ class CreateTeachersTable extends Migration
             $table->string('email')->unique();
             $table->integer('phone');
             $table->string('designation');
-            $table->string('department');
+            $table->string('department_id');
             $table->integer('credit');
             $table->timestamps();
             $table->softDeletes();

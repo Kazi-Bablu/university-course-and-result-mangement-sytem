@@ -25,9 +25,9 @@ class CourseController extends Controller
     public function index()
     {
 
-        $allCourse = Course::with('departments','name')->paginate(15);
+        $allCourse = Course::with('department')->paginate(10);
 
-        //dd($allCourse);
+       //dd($allCourse);
 
         return view ('Admin.course.index',['allCourse'=> $allCourse]);
 
@@ -49,7 +49,7 @@ class CourseController extends Controller
         $obj->name=$request->name;
         $obj->credit=$request->credit;
         $obj->description=$request->description;
-        $obj->department_id=$request->department;
+        $obj->department=$request->department;
         $obj->semester=$request->semester;
         $obj->save();
         Session::flash('message','Course Add Successfully.....!');
@@ -83,7 +83,7 @@ class CourseController extends Controller
         $exitData->name=$request->name;
         $exitData->credit=$request->credit;
         $exitData->description=$request->description;
-        $exitData->department_id=$request->department;
+        $exitData->department=$request->department;
         $exitData->semester=$request->semester;
         $exitData->save();
         session::flash('message','Course add Successfully.....!');

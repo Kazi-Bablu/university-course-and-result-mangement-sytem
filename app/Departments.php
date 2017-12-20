@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Departments extends Model
 {
 
-    //
-    public function course()
+    protected  $table = 'departments';
+
+  /*  public function course()
     {
-        return $this->hasMany('App\Course','department_id','id');
-    }
-    public function  teacher()
-    {
-        return $this->hasMany('App\Teacher');
-    }
+        return $this->hasMany('App\Course','department_id');
+    }*/
+
     public function courseAssignTo()
     {
         return $this->hasMany('App\CourseAssignTo');

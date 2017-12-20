@@ -52,8 +52,18 @@
                     </div>
 
                     <div class="form-group">
-                        {{Form::label('email','Teacher Email Address')}}
-                        {!! Form::email('email', null, array('placeholder' => 'Enter Teacher Mail Address','class' => 'form-control')) !!}
+                        {{Form::label('Email','Teacher Email  Address')}}
+                        {!! Form::email('email', null, array('placeholder' => 'Enter Teacher Phone number ','class' => 'form-control')) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {{Form::label('Department','Department ')}}
+                        <select name="department" class="form-control">
+                            <option value=" ">----Select Department-----</option>
+                            @foreach($department as $value)
+                                <option value="{{$value->id}}">{{$value->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -72,11 +82,11 @@
 
                     </div>
 
-                    <div class="form-group">
+                   {{-- <div class="form-group">
                         {{Form::label('department','Department')}}
                         {{Form::select('department', $department, ' ', array('placeholder' => 'Select Department','class'=>'form-control'))}}
 
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
                         {{Form::label('credit','Teacher Credit To Be Taken')}}

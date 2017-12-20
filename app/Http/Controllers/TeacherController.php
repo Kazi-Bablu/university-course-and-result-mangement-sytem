@@ -16,7 +16,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $allTeacher = Teacher::paginate(10);
+        $allTeacher = Teacher::with('department')->paginate(10);
+        //dd($allTeacher);
         return view('Admin/teacher/index',['allTeacher'=> $allTeacher]);
     }
 
@@ -27,7 +28,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $department = Departments::pluck('name','name');
+        $department = Departments::all();
         return view('Admin/teacher/create')
             ->with('department',$department);
     }
@@ -54,7 +55,7 @@ class TeacherController extends Controller
         $obj->address=$request->address;
         $obj->email=$request->email;
         $obj->phone=$request->phone;
-        $obj->department=$request->department;
+        $obj->department_id=$request->department;
         $obj->designation=$request->designation;
         $obj->credit=$request->credit;
         $obj->save();
@@ -114,7 +115,7 @@ class TeacherController extends Controller
         $exitData->address=$request->address;
         $exitData->email=$request->email;
         $exitData->phone=$request->phone;
-        $exitData->department=$request->department;
+        $exitData->department_id=$request->department;
         $exitData->designation=$request->designation;
         $exitData->credit=$request->credit;
         $exitData->save();

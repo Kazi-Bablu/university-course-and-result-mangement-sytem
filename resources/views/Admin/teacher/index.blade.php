@@ -38,7 +38,7 @@
                                     <td class="success">{{$teacher->email}}</td>
                                     <td class="success">{{$teacher->phone}}</td>
                                     <td class="success">{{$teacher->designation }}</td>
-                                    <td class="success">{{$teacher->department}}</td>
+                                    <td class="success">{{$teacher->department->name}}</td>
                                     <td class="success">{{$teacher->credit}}</td>
                                     <td class="success">
                                         <div class="btn btn-success">

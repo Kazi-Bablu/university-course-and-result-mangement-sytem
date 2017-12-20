@@ -38,7 +38,7 @@
                             <td class="success">{{$course->name}}</td>
                             <td class="success">{{$course->credit}}</td>
                             <td class="success">{{$course->description}}</td>
-                            <td class="success">{{$course->department_id ->name}}</td>
+                            <td class="success">{{$course->department->name}}</td>
                             <td class="success">{{$course->semester}}</td>
                             <td class="success">
                                 <div class="btn btn-success">

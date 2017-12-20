@@ -9,7 +9,7 @@ class Teacher extends Model
     //
     public function department()
     {
-        return $this->hasTo('App\Department');
+        return $this->hasOne('App\Departments','id','department_id');
     }
     public function course()
     {
