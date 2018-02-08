@@ -65,7 +65,8 @@ font-size: 16px;"><a href="{{ route('logout') }}"
 </div>
 
 @include('Admin.Include.Footer')
-@yield('script')
+
 @include('Admin.Include.customjs')
+@yield('script')
 </body>
 </html>

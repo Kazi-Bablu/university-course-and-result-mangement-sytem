@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseAssignTosTable extends Migration
+class CreateSaveStudentResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCourseAssignTosTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_assign_tos', function (Blueprint $table) {
+        Schema::create('save_student_results', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('department_id');
-            $table->integer('teacher');
-            $table->integer('credit_taken');
-            $table->integer('remain_credit');
-            $table->string('course');
-            $table->string('C_name');
-            $table->string('course_credit');
+            $table->integer('reg_number');
+            $table->string('st_name');
+            $table->string('email_ad');
+            $table->string('department_na');
+            $table->string('course_id');
+            $table->string('grade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +33,6 @@ class CreateCourseAssignTosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_assign_tos');
+        Schema::dropIfExists('save_student_results');
     }
 }

@@ -44,10 +44,11 @@
                 <div class="col-md-7">
 
                     <div class="form-group">
+                        {{Form::label('Department','Department')}}
                         {{--{{Form::label('department','Department')}}
                         {{Form::select('department', ['s'=>'S'], ' ', array('placeholder' => 'Select Department','class'=>'form-control'))}}--}}
-                        <select name="department"  id="department"  onchange="teacherQuery()" class="form-control">
-                               <option value="">-- Select --</option>
+                        <select name="department_id"  id="department"  onchange="teacherQuery()" class="form-control">
+                               <option value="">-- Select Department--</option>
                                @foreach($department as $value)
                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
@@ -57,7 +58,7 @@
                     <div class="form-group">
                        {{-- {{Form::label('teacher','Teacher')}}
                         {{Form::select('teacher', ['s'=>'S'], ' ', array('placeholder' => 'Select Teacher','class'=>'form-control'))}}--}}
-
+                        {{Form::label('Teacher','Teacher Select')}}
                         <select name="teacher" id="teacher"  class="form-control">
                             <option value=" "> -- Select Teacher---</option>
 
@@ -68,30 +69,32 @@
 
                     <div class="form-group">
                         {{Form::label('credit',' Credit To Be Taken')}}
-                        {!! Form::number('credit_taken', null, array('placeholder' => 'Enter  Credit  To Be Taken','class' => 'form-control')) !!}
+                        {!! Form::number('credit_taken', null, array('id'=>'credit_taken','placeholder' => 'Enter  Credit  To Be Taken','class' => 'form-control')) !!}
                     </div>
-                    <div class="form-group">
-                        {{Form::label('credit',' Remain Credit ')}}
-                        {!! Form::number('remain_credit', null, array('placeholder' => ' Remain Credit  ','class' => 'form-control')) !!}
-                    </div>
+
                     <div class="form-group">
                        {{-- {{Form::label('course','Course Code')}}
                         {{Form::select('course', ['s'=>'S'], ' ', array('placeholder' => 'Select Course Code','class'=>'form-control'))}}--}}
-
-                        <select name="course"  class="form-control">
-
-
-
+                        {{Form::label('Course',' Course ')}}
+                        <select name="course" id="course_code" class="form-control">
+                            <option value=" "> -- Select Course---</option>
+                            @foreach($course as $value)
+                                <option value="{{ $value->id }}">{{ $value->code }}</option>
+                            @endforeach
                         </select>
 
                     </div>
                     <div class="form-group">
                         {{Form::label('name',' Name')}}
-                        {!! Form::text('name', null, array('placeholder' => 'Enter  Name','class' => 'form-control')) !!}
+                        {!! Form::text('C_name', null, array('id'=>'course','placeholder' => 'Enter  Name','class' => 'form-control')) !!}
                     </div>
                     <div class="form-group">
                         {{Form::label('credit',' Credit ')}}
-                        {!! Form::number('credit', null, array('placeholder' => 'Enter  Credit  ','class' => 'form-control')) !!}
+                        {!! Form::text('course_credit', null, array('id'=>'course_credit','placeholder' => 'Enter  Credit  ','class' => 'form-control')) !!}
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('credit',' Remain Credit ')}}
+                        {!! Form::text('remain_credit', null, array('id'=>'remain_credit','placeholder' => ' Remain Credit  ','class' => 'form-control')) !!}
                     </div>
 
 
@@ -114,19 +117,22 @@
     <script>
         function teacherQuery(){
             var department = $('#department' ).val();
+
             if(department!=" ")
             {
-                var url = "{{ URL::to('/teacher/course/dropdown') }}";
+                var urls = "{{ URL::to('/teacher/course/dropdown') }}";
                 var request = $.ajax({
-                    url: url+"/"+department,
+                    url: urls+"/"+department,
                     type: "GET",
                     dataType: 'json'
                 });
                 request.done(function(data){
+                    var teacher ="<option>-- Select Teacher --</option>";
                     for (var  i=0; i<data.length;i++)
                     {
-                        $("#teacher").html("<option value=' " +data[i].id+ " ' >"+data[i].name+ "</option>");
+                        teacher +="<option value=' " +data[i].id+ " ' >"+data[i].name+ "</option>";
                     }
+                    $("#teacher").html(teacher);
                 });
                 request.fail(function(){
                     alert('failed to get items for that department');
@@ -136,6 +142,58 @@
             }
 
         }
+        $('#teacher').change(function () {
+            var teacher_name = $('#teacher').val();
+            if(teacher_name!='') {
+            var teacher = " ";
+            var url = "{{URL::to('/teacher/credit/') }}";
+            var requests = $.ajax({
+            url: url + "/" + teacher_name,
+            type: "GET",
+            dataType: 'json'
+            });
+            requests.done(function (data) {
+            $("#credit_taken").val(data[0].credit);
+            });
+            requests.fail(function () {
+            alert('Failed to get credit for that Teacher');
+            });
+            }
+            else {
+            alert('Select Teacher');
+            }
+        });
+
+        $('#course_code').change(function () {
+            var course_code = $('#course_code').val();
+            if(course_code!='') {
+                var course = " ";
+                var url = "{{URL::to('/course/credit/') }}";
+                var requests = $.ajax({
+                    url: url + "/" + course_code,
+                    type: "GET",
+                    dataType: 'json'
+                });
+                requests.done(function (data) {
+                    $("#course").val(data[0].name);
+                    $("#course_credit").val(data[0].credit);
+
+                    var hour_start = parseInt( document.getElementById('credit_taken').value );
+                    document.getElementById('remain_credit').value = hour_start - data[0].credit;
+
+
+                });
+                requests.fail(function () {
+                    alert('Failed to get name form Course');
+                });
+            }
+            else {
+                alert('Select Course Code');
+            }
+        });
+
+
+
     </script>
 
 @endsection

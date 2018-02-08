@@ -4,19 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class AllocateClassroom extends Model
 {
     //
-    //protected $table ='courses';
-
     public function department()
     {
         return $this->hasOne('App\Departments','id','department_id');
     }
-    public function courseAssignTo()
+    public function course()
     {
-        return $this->hasOne('App\CourseAssignTO');
+        return $this->hasOne('App\Course','id','course_id');
     }
-
-
 }

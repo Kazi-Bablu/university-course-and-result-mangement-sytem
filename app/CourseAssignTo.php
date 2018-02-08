@@ -9,14 +9,14 @@ class CourseAssignTo extends Model
     //
     public function teacher()
     {
-        return $this->hasMany('App\Teacher');
+        return $this->hasOne('App\Teacher','id','teacher');
     }
     public function department()
     {
-        return $this->hasMany('App\Department','id');
+        return $this->hasOne('App\Department','id','department_id');
     }
     public function course()
     {
-        return $this->hasOne('App\Course');
+        return $this->hasMany('App\Course','id','course');
     }
 }

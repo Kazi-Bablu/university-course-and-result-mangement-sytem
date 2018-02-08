@@ -49,7 +49,7 @@ class CourseController extends Controller
         $obj->name=$request->name;
         $obj->credit=$request->credit;
         $obj->description=$request->description;
-        $obj->department=$request->department;
+        $obj->department_id=$request->department;
         $obj->semester=$request->semester;
         $obj->save();
         Session::flash('message','Course Add Successfully.....!');

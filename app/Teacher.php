@@ -11,8 +11,6 @@ class Teacher extends Model
     {
         return $this->hasOne('App\Departments','id','department_id');
     }
-    public function course()
-    {
-        return $this->hasOne('App\Course');
-    }
+
+
 }

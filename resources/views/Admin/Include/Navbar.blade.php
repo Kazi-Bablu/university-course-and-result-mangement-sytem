@@ -96,6 +96,72 @@
                 </ul>
             </li>
 
+            {{--Student nav bar --}}
+            <li>
+                <a href="#"><i class="fa fa-users" ></i>Student<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/admin/students/create">Add Student</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/students/index">View Student List</a>
+                    </li>
+
+                </ul>
+            </li>
+            {{--Allocate classroom--}}
+            <li>
+                <a href="#"><i class="fa fa-archive" ></i>Allocate Classroom<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/admin/allocateClassrooms/create">Add Classrooms</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/allocateClassrooms/index">View Classrooms</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            {{--enroll course--}}
+
+            <li>
+                <a href="#"><i class="fa fa-user" ></i>Enroll In a Course<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/admin/enrollCourse/create">Add Enroll Course</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/enrollCourse/index">View View Enroll Course</a>
+                    </li>
+
+                </ul>
+            </li>
+            {{--Save Student Result--}}
+            <li>
+                <a href="#"><i class="fa fa-bars" ></i>Save Student Result<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/admin/saveResult/create">Add Student Result</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/saveResult/index">View Student Result</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            {{--student result section--}}
+            <li>
+                <a href="#"><i class="fa fa-eye" ></i>Search Student Result<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/admin/Result/search">Search Student Result</a>
+                    </li>
+
+                </ul>
+            </li>
+
         </ul>
 
     </div>

@@ -80,8 +80,6 @@
                 <div class="title m-b-md">
                     Welcome University Course and Result Management System
                 </div>
-
-
             </div>
         </div>
     </body>
